@@ -19,7 +19,6 @@ DATABASE_URI = os.getenv(
 
 BASE_URL = "/accounts"
 
-
 ######################################################################
 #  T E S T   C A S E S
 ######################################################################
@@ -124,7 +123,6 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     # ADD YOUR TEST CASES HERE ...
-    #def test_read_an_account(self):
     def test_get_account(self):
         """It should Read a single Account"""
         account = self._create_accounts(1)[0]
@@ -141,9 +139,6 @@ class TestAccountService(TestCase):
         resp = self.client.get(f"{BASE_URL}/0")
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
 
-    ###########################
-    # LIST
-    ###########################
     def test_get_account_list(self):
         """It should Get a list of Accounts"""
         self._create_accounts(5)
@@ -151,7 +146,7 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(len(data), 5)
-    
+
     def test_no_accounts_exist(self):
         """It should never send back a 404_NOT_FOUND. 
         If you do not find any accounts, send back an empty list ([]) 
@@ -162,11 +157,6 @@ class TestAccountService(TestCase):
         data = resp.get_json()
         self.assertEqual(len(data), 0)
 
-
-
-    ###########################
-    # UPDATE
-    ###########################
     def test_update_account(self):
         """It should Update an existing Account"""
         # create an Account to update
@@ -182,10 +172,6 @@ class TestAccountService(TestCase):
         updated_account = resp.get_json()
         self.assertEqual(updated_account["name"], "Something Known")
 
-
-    ###########################
-    # DELETE
-    ###########################
     def test_delete_account(self):
         """It should Delete an Account"""
         account = self._create_accounts(1)[0]
