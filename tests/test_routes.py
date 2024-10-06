@@ -22,6 +22,8 @@ BASE_URL = "/accounts"
 ######################################################################
 #  T E S T   C A S E S
 ######################################################################
+
+
 class TestAccountService(TestCase):
     """Account Service Tests"""
 
@@ -148,8 +150,8 @@ class TestAccountService(TestCase):
         self.assertEqual(len(data), 5)
 
     def test_no_accounts_exist(self):
-        """It should never send back a 404_NOT_FOUND. 
-        If you do not find any accounts, send back an empty list ([]) 
+        """It should never send back a 404_NOT_FOUND.
+        If you do not find any accounts, send back an empty list ([])
         and 200_OK"""
         self._create_accounts(0)
         resp = self.client.get(BASE_URL)
